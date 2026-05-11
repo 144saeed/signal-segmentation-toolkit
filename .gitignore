@@ -18,3 +18,12 @@ sfprj/
 # upload small example datasets later. If you want to ignore large data, 
 # uncomment the line below:
 # *.mat
+
+# MATLAB Project Specific Files
+resources/project/user/
+*.prj.bak
+.SimulinkProject/
+
+# MATLAB test reports (if generated later)
+*.pdf
+*.html
