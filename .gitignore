@@ -1,0 +1,20 @@
+# MATLAB autosave and backup files
+*.asv
+*.m~
+*.bak
+
+# Compiled MEX binaries (We only track the source code)
+*.mexw64
+*.mexw32
+*.mexa64
+*.mexmaci64
+*.mexmaca64
+
+# Simulink code generation folders (If added later)
+slprj/
+sfprj/
+
+# Note: .mat files are NOT ignored by default because you might need to 
+# upload small example datasets later. If you want to ignore large data, 
+# uncomment the line below:
+# *.mat
