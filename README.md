@@ -1,52 +1,71 @@
-# Signal Segmentation Toolkit
+# Signal Segmentation Toolkit 🚀
 
-A high-performance, vectorized toolkit for signal segmentation, Run-Length Encoding (RLE), state-change detection, and strict monotonic enforcement. 
+[![MATLAB](https://img.shields.io/badge/MATLAB-R2026a+-blue.svg)](https://www.mathworks.com/products/matlab.html)
+[![View on File Exchange](https://img.shields.io/badge/File_Exchange-183857-orange.svg)](https://www.mathworks.com/matlabcentral/fileexchange/183857-signal-segmentation-toolkit)
+![License](https://img.shields.io/badge/license-MIT-green)
 
-## Why use this toolkit?
-* **Dependency-Free**: Works out-of-the-box using base MATLAB algorithms. Zero reliance on toolboxes (like Image Processing or Signal Processing).
-* **Vectorized Performance**: Built with JIT-optimized, loop-free architectures capable of handling massive 1D signals and complex N-dimensional arrays efficiently.
-* **Sequential Contiguity**: Unlike standard grouping functions that rely on hashing or sorting scattered data, these tools are explicitly designed to respect temporal and sequential block structures.
-* **Global Trend Awareness**: Features completely original algorithms for monotonic filtering that rely on global cumulative logic rather than fragile local derivatives.
+A high-performance, vectorized toolkit for signal segmentation, Run-Length Encoding (RLE), and state-machine driven analysis. Optimized for large-scale engineering datasets (e.g., OpenFAST, sensor logs).
 
-## Available Functions
+<p align="center">
+  <img src="images/collect_demo.png" width="900" alt="Signal Segmentation Demo">
+</p>
 
-### Morphology & Segmentation
-* `bounds`: High-performance RLE analyzer returning start, end, and length indices of contiguous segments.
-* `collect`: Direct memory slicer that cuts multi-channel data into cells based on mask boundaries.
-* `labels`: Vectorized state-change counter that transforms arrays into sequential ID maps.
-* `modify`: 1D morphological engine to precisely expand (dilate), shrink (erode), or slide segments.
-* `prune`: Ultra-fast length filter to eliminate non-conforming short segments without loops.
-* `locate`: State-machine driven steady-state detector with fallback architectures for safety.
+## ✨ Why use this toolkit?
+* **Dependency-Free**: Works out-of-the-box using base MATLAB. Zero reliance on toolboxes (like Image Processing or Signal Processing).
+* **Vectorized Performance**: Built with JIT-optimized, loop-free architectures for massive N-dimensional arrays.
+* **Sequential Contiguity**: Designed to respect temporal and sequential block structures.
+* **Global Trend Awareness**: Original algorithms for monotonic filtering using global cumulative logic.
 
-### Monotonicity Enforcement
-* `nonMonotonicMask`: Identifies violations of strictly increasing trends. Utilizes an original **Global Cumulative Strategy** (`cummax`/`cummin`) to robustly mark entire non-monotonic clusters (backward flows or stalls) rather than just local drops.
-* `rmNonMonotonic`: A "Gatekeeper" function that utilizes the mask to clean a reference vector and synchronously slice any associated multi-dimensional data arrays.
+## 🛠 Available Functions
 
-## Installation
-Clone the repository and add the root directory (the folder containing the `+sovs` namespace) to your MATLAB path.
+| Function | Category | Description |
+| :--- | :--- | :--- |
+| `bounds` | RLE | Returns start, end, and length of contiguous segments. |
+| `collect` | Slicing | Cuts multi-channel data into cells based on mask boundaries. |
+| `labels` | Mapping | Vectorized state-change counter for sequential ID maps. |
+| `modify` | Morphology | Precise 1D expansion (dilate), shrink (erode), or slide. |
+| `prune` | Filtering | Ultra-fast length filter to eliminate short segments. |
+| `locate` | State-Machine | JIT-optimized steady-state detector (Pure MATLAB). |
+| `rmNonMonotonic` | Filtering | Synchronous cleaning based on global monotonic trends. |
+
+## 🚀 Quick Start
+
+### Installation
+Clone the repository and add the root directory to your MATLAB path.
 
 ~~~matlab
 addpath('path/to/signal-segmentation-toolkit')
 ~~~
 
-## Usage
-This toolkit uses a professional namespace (`sovs.segment`) to prevent conflicts with other toolboxes. You can use the functions directly via their full path:
+### Basic Usage
+This toolkit uses a professional namespace (`sovs.segment`). You can import the package for cleaner code:
 
 ~~~matlab
-% Direct usage
-starts = sovs.segment.bounds(mySignal);
-~~~
-
-Or, you can import the package at the top of your script for cleaner code:
-
-~~~matlab
-% Import the entire package
 import sovs.segment.*
 
-% Now you can call the functions normally
-starts = bounds(mySignal);
-cleanSignal = rmNonMonotonic(mySignal);
+% Example: Detect steady states in a noisy signal
+[labels, n] = locate(time, signal, 0.1, 0.5);
+
+% Example: Clean and sync non-monotonic data
+[t_clean, v_clean] = rmNonMonotonic(t, v);
 ~~~
 
-## Acknowledgments
-The core algorithms, logic, and original concepts (such as the global cumulative approach for monotonic masking) were exclusively designed and implemented by the author. Google Gemini was utilized as an AI assistant to collaborate on code refactoring, structural optimization, and drafting this documentation.
+## 📈 Visual Demos
+The `examples/` folder contains interactive scripts to visualize the algorithms:
+
+* **`demo_segment_collect`**: Shows synchronized multi-channel slicing.
+* **`demo_segment_locate`**: Visualizes the state-machine locking on stable regions.
+* **`demo_segment_prune`**: Demonstrates digital signal despeckling.
+
+<p align="center">
+  <img src="images/locate_demo.png" width="450">
+  <img src="images/prune_demo.png" width="450">
+</p>
+
+## 📜 Citation & Acknowledgments
+The core algorithms and original concepts (such as the global cumulative approach for monotonic masking) were designed and implemented by Saeed Oveisi. Google Gemini was utilized as an AI assistant for code refactoring and documentation drafting.
+
+---
+**Author**: Saeed Oveisi  
+**Email**: [oveisi.saeed@gmail.com](mailto:oveisi.saeed@gmail.com)  
+**GitHub**: [@144saeed](https://github.com/144saeed)
