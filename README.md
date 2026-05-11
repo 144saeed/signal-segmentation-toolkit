@@ -4,7 +4,7 @@
 [![View on File Exchange](https://img.shields.io/badge/File_Exchange-183857-orange.svg)](https://www.mathworks.com/matlabcentral/fileexchange/183857-signal-segmentation-toolkit)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
-A high-performance, vectorized toolkit for signal segmentation, Run-Length Encoding (RLE), and state-machine driven analysis. Optimized for large-scale engineering datasets (e.g., OpenFAST, sensor logs).
+A high-performance, vectorized toolkit for signal segmentation, Run-Length Encoding (RLE), and state-machine driven analysis. Optimized for large-scale engineering datasets (e.g., sensor logs).
 
 <p align="center">
   <img src="images/collect_demo.png" width="900" alt="Signal Segmentation Demo">
@@ -58,6 +58,7 @@ The `examples/` folder contains interactive scripts to visualize the algorithms:
 * **`demo_segment_prune`**: Demonstrates digital signal despeckling.
 
 <p align="center">
+  <img src="images/collect_demo.png" width="450">
   <img src="images/locate_demo.png" width="450">
   <img src="images/prune_demo.png" width="450">
 </p>
